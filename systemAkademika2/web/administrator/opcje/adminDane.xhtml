@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../AdminDecorator.xhtml">
+            <ui:define name="top">
+                <div align="center">
+                    <h:form>
+                        <h:outputText value="#{pearsonkontroler.setWyswietl(false)}"/>
+                    </h:form>
+                </div>
+            </ui:define>
+            <ui:define name="content">
+                <h:form id="form">
+                    <div align="center">
+                        <h2>Menu:   !Przeglądanie danych!    Edycja danych    Pokoje    Edycja pokojów</h2>
+                        
+                    </div>
+                    <div align="center">
+                        <h:commandButton value="Lista osób" action="#{pearsonkontroler.wszystkieOsoby()}"/>                        
+                        <h:panelGrid columns="2">
+                                <h:dataTable value="#{pearsonkontroler.listaOsob}" var="item">                                   
+                                    <h:column rendered="#{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Imie"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.imie}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Imie"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.imie}"/>
+                                    </h:column>
+                                    
+                                    <h:column rendered="#{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Nazwisko"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.nazwisko}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Nazwisko"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.nazwisko}"/>
+                                    </h:column>
+                                    
+                                    <h:column rendered="#{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Mail"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.mail}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Mail"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.mail}"/>
+                                    </h:column>
+                                    
+                                    <h:column rendered="#{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Login"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.login}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Login"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.login}"/>
+                                    </h:column>
+                                    
+                                    <h:column rendered="not #{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Haslo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.haslo}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Haslo"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.haslo}"/>
+                                    </h:column>
+                                    
+                                    <h:column rendered="#{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="IdPokoju"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.idPokoju}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="IdPokoju"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.idPokoju}"/>
+                                    </h:column>
+                                    
+                                    <h:column rendered="#{!pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Status"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.status}"/>
+                                    </h:column>
+                                    <h:column rendered="#{pearsonkontroler.wyswietl}">
+                                        <f:facet name="header">
+                                            <h:outputText value="Status"/>
+                                        </f:facet>
+                                        <h:inputText value="#{item.status}"/>
+                                    </h:column>
+                                    
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText value="Id"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.id}"/>
+                                    </h:column>
+                                    
+                                </h:dataTable>
+                            <h:panelGrid columns="1">
+                                <p:commandButton value="Edytuj" action="#{pearsonkontroler.setWyswietl(true)}" update="form"/>
+                                <p:commandButton value="Zapisz" action="#{pearsonkontroler.editAllPeople()}" update=":form"/>
+                            </h:panelGrid>
+                        </h:panelGrid>        
+                    </div>                    
+                </h:form>                
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./mieszkaniecDecorator.xhtml">
+
+            <ui:define name="content">
+                <div align="center">
+                <f:view>
+
+
+                    <h:form>
+                        
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <h:outputLabel value="Imie:" for="imie" />
+                            <h:outputText id="imie" value="#{pearsonkontroler.osoba.imie}" title="Imie" />
+                            <h:outputLabel value="Nazwisko:" for="nazwisko" />
+                            <h:outputText id="nazwisko" value="#{pearsonkontroler.osoba.nazwisko}" title="Nazwisko" />
+                            <h:outputLabel value="Mail:" for="mail" />
+                            <h:outputText id="mail" value="#{pearsonkontroler.osoba.mail}" title="Mail" />
+                            <h:outputLabel value="Login:" for="login" />
+                            <h:outputText id="login" value="#{pearsonkontroler.osoba.login}" title="Login" />
+                            <h:outputLabel value="Haslo:" for="haslo" />
+                            <h:outputText id="haslo" value="#{pearsonkontroler.osoba.haslo}" title="Haslo" />
+                            <h:outputLabel value="Numer pokoju:" for="idPokoju" />
+                            <h:outputText id="idPokoju" value="#{pearsonkontroler.osoba.idPokoju}" title="IdPokoju" />
+                            <f:facet name="footer">
+                                <h:commandLink value="Poproś o zmianę danych"/>
+                            </f:facet>
+                        </h:panelGrid>
+                    </h:form>
+                </f:view>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
