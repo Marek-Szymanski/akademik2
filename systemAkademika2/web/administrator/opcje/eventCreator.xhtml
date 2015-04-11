@@ -12,6 +12,7 @@
 
             <ui:define name="top">
                 Event
+                <h:outputText value="#{eventkontroler.setEventList(eventkontroler.allEv())}"/>
             </ui:define>
 
             <ui:define name="content">
@@ -20,7 +21,7 @@
                         <p:panel>
                             <p:growl id="msgs" showDetail="true" />
                             
-                            <h:panelGrid columns="2" >
+                            <h:panelGrid columns="2"  cellpadding="5">
                                 <h:outputText value="Tytuł"/>
                                 <h:inputText value="#{eventkontroler.event.name}"/>
                                 <h:outputText value="Miejsce"/>
@@ -39,14 +40,91 @@
                                 <h:inputTextarea value="#{eventkontroler.event.description}"/>
                                 <f:facet name="footer">
                                     <p:commandButton value="Zapisz" action="#{eventkontroler.save()}" update="form"/>
+                                    <h:outputText value="#{eventkontroler.setEventList(eventkontroler.allEv())}"/>
                                 </f:facet>
                             </h:panelGrid>
                             
                             
                         </p:panel>
                         
-                        <p:panel>
+                        <p:panel id="panelList">
                             
+
+                              
+                                    <h1><h:outputText value="List"/></h1>
+                                    <h:dataTable value="#{eventkontroler.eventList}" var="item" cellpadding="5">
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Name"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.name}"/>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Place"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.place}"/>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="StartDate"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.startDate}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                </h:outputText>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="EndDate"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.endDate}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                </h:outputText>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Description"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.description}"/>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="PoepleId"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.poepleId}"/>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Id"/>
+                                                </f:facet>
+                                                <h:outputText value="#{item.id}"/>
+                                            </div>
+                                        </h:column>
+                                        <h:column>
+                                            <div align="center">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Zatwierdzanie"/>
+                                                </f:facet>
+                                                <p:commandButton value="Zatwierdź" action="#{item.setAccepted(true)}" update=":panelList" rendered="#{item.accepted eq false}"/>
+                                                <p:commandButton value="Odrzuć" action="#{item.setAccepted(false)}" update=":panelList" rendered="#{item.accepted eq true}"/>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                
+
                         </p:panel>
                     </h:form>
                 </div>

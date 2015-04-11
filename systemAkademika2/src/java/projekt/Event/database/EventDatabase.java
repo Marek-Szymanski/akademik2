@@ -33,6 +33,7 @@ public class EventDatabase implements Serializable {
     private Date endDate;
     @Lob
     private String description;
+    private boolean accepted;
    
     private int poepleId;
 
@@ -62,6 +63,14 @@ public class EventDatabase implements Serializable {
 
     public Date getEndDate() {
         return endDate;
+    }
+
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 
     public void setEndDate(Date endDate) {
@@ -118,6 +127,10 @@ public class EventDatabase implements Serializable {
     @Override
     public String toString() {
         return "projekt.Event.database.NewEntity[ id=" + id + " ]";
+    }
+
+    public EventDatabase() {
+        accepted = false;
     }
     
 }

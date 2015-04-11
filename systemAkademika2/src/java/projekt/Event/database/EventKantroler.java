@@ -7,8 +7,10 @@ package projekt.Event.database;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -32,6 +34,7 @@ public class EventKantroler implements Serializable{
     private Date date1 = new Date();
     private Date date2 = new Date();
     private EventDatabase eventDB = new EventDatabase();
+    private List<EventDatabase> eventList = new ArrayList<>();
     
     public void onDate1Select(SelectEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -53,11 +56,14 @@ public class EventKantroler implements Serializable{
     
     public void save()
     {
-        //if(eventDB.getStartDate().before(eventDB.getEndDate()))
-                System.out.println("STOP");
+        eventDB.setAccepted(true);
         eventManager.newEvent(eventDB);
         eventDB = new EventDatabase();
-        
+    }
+    
+    public List<EventDatabase> allEv()
+    {
+        return eventManager.allEv();
     }
 
     public Date getDate1() {
@@ -83,4 +89,12 @@ public class EventKantroler implements Serializable{
     public void setEvent(EventDatabase event) {
         this.eventDB = event;
     }   
+
+    public List<EventDatabase> getEventList() {
+        return eventList;
+    }
+
+    public void setEventList(List<EventDatabase> eventList) {
+        this.eventList = eventList;
+    }
 }
