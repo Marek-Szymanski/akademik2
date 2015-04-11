@@ -6,14 +6,10 @@
 package projekt.Event.database;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -27,13 +23,9 @@ public class EventDatabase implements Serializable {
     private Long id;
     private String name;
     private String place;
-    @Temporal(TemporalType.DATE)
-    private Date startDate;
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
-    @Lob
+    private String startDate;
+    private String endDate;
     private String description;
-    private boolean accepted;
    
     private int poepleId;
 
@@ -53,27 +45,19 @@ public class EventDatabase implements Serializable {
         this.place = place;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public boolean isAccepted() {
-        return accepted;
-    }
-
-    public void setAccepted(boolean accepted) {
-        this.accepted = accepted;
-    }
-
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -127,10 +111,6 @@ public class EventDatabase implements Serializable {
     @Override
     public String toString() {
         return "projekt.Event.database.NewEntity[ id=" + id + " ]";
-    }
-
-    public EventDatabase() {
-        accepted = false;
     }
     
 }
