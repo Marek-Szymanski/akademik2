@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../AdminDecorator.xhtml">
+
+            <ui:define name="top">
+                Event
+            </ui:define>
+
+            <ui:define name="content">
+                <div align="center">
+                    <h:form id="form">
+                        <p:panel>
+                            <p:growl id="msgs" showDetail="true" />
+                            
+                            <h:panelGrid columns="2" >
+                                <h:outputText value="Tytuł"/>
+                                <h:inputText value="#{eventkontroler.event.name}"/>
+                                <h:outputText value="Miejsce"/>
+                                <h:inputText value="#{eventkontroler.event.place}"/>
+                                
+                                <p:outputLabel for="event1" value="Początek" />
+                                <p:calendar id="event1" value="#{eventkontroler.event.startDate}" style="background-color: greenyellow">
+                                    <p:ajax event="dateSelect" listener="#{eventmanager.onDate1Select}" update="msgs" />
+                                </p:calendar>
+                                <p:outputLabel for="event2" value="Koniec" />
+                                <p:calendar id="event2" value="#{eventkontroler.event.endDate}">
+                                    <p:ajax event="dateSelect" listener="#{eventmanager.onDate2Select}" update="msgs" />
+                                </p:calendar>
+                                
+                                <h:outputText value="Opis"/>
+                                <h:inputTextarea value="#{eventkontroler.event.description}"/>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Zapisz" action="#{eventkontroler.save()}" update="form"/>
+                                </f:facet>
+                            </h:panelGrid>
+                            
+                            
+                        </p:panel>
+                        
+                        <p:panel>
+                            
+                        </p:panel>
+                    </h:form>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
